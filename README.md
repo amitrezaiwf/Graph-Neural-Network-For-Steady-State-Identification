@@ -1,1 +1,1 @@
-# Graph-Neural-Network-For-Steady-State-Identification
+## This repository contains simulated data generation and graph neural network  models developed for the work presented in "Predicting steady-state behavior in complex networks with graph neural networks" [Phys. Rev. E. --> https://journals.aps.org/pre/accepted/10.1103/rkp2-3d1r].
