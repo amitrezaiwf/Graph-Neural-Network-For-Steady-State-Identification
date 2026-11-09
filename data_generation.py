@@ -2,20 +2,23 @@ import networkx as nx
 import numpy as np
 import torch
 from torch_geometric.data import Data
+
 from user_utility_functions import get_ipr
-#-
+
+
+# -
 def _graph_to_data(G):
     A = nx.adjacency_matrix(G)
     ipr = get_ipr(A.todense())
     A_tensor = torch.tensor(A.todense())
 
-    row, col = torch.nonzero(A_tensor, as_tuple = True)
-    edge_index = torch.stack([row, col], dim = 0)
+    row, col = torch.nonzero(A_tensor, as_tuple=True)
+    edge_index = torch.stack([row, col], dim=0)
 
     x = customized_features(G)
     y = torch.tensor(ipr)
 
-    return Data(x = x, edge_index = edge_index.contiguous(), edge_attr=None, y = y, pos = None)
+    return Data(x=x, edge_index=edge_index.contiguous(), edge_attr=None, y=y, pos=None)
 
 
 def star(ngraphs, num_features, start, end):
@@ -26,6 +29,7 @@ def star(ngraphs, num_features, start, end):
         dataset.append(_graph_to_data(G))
     return dataset
 
+
 def cycle(ngraphs, num_features, start, end):
     dataset = []
     for _ in range(ngraphs):
@@ -33,6 +37,7 @@ def cycle(ngraphs, num_features, start, end):
         G = nx.cycle_graph(n)
         dataset.append(_graph_to_data(G))
     return dataset
+
 
 def wheel(ngraphs, num_features, start, end):
     dataset = []
@@ -42,6 +47,7 @@ def wheel(ngraphs, num_features, start, end):
         dataset.append(_graph_to_data(G))
     return dataset
 
+
 def path(ngraphs, num_features, start, end):
     dataset = []
     for _ in range(ngraphs):
@@ -49,6 +55,7 @@ def path(ngraphs, num_features, start, end):
         G = nx.path_graph(n)
         dataset.append(_graph_to_data(G))
     return dataset
+
 
 def erdos(numgraphs, num_features, start, end):
     dataset = []
@@ -63,6 +70,7 @@ def erdos(numgraphs, num_features, start, end):
         dataset.append(_graph_to_data(G))
     return dataset
 
+
 def barabasi(numgraphs, num_features, start, end):
     dataset = []
     for _ in range(numgraphs):
@@ -71,6 +79,7 @@ def barabasi(numgraphs, num_features, start, end):
         G = nx.barabasi_albert_graph(n, m)
         dataset.append(_graph_to_data(G))
     return dataset
+
 
 # -Customized feature generation--
 def customized_features(G):

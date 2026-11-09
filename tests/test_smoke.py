@@ -67,4 +67,3 @@ def test_threshold_metrics():
     multi_actual, multi_pred = decides_predicted_multi_classes(actual, pred)
     assert np.array_equal(multi_actual, np.array([0.0, 1.0, 2.0]))
     assert np.array_equal(multi_pred, np.array([0.0, 1.0, 2.0]))
-

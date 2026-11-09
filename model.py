@@ -10,15 +10,16 @@ from torch_geometric.nn import (
 
 num_features = 5
 
-#-
+
+# -
 class GAT(torch.nn.Module):
     def __init__(self, hidden_channels):
         super().__init__()
         torch.manual_seed(12345)
-        self.conv1 = GATConv(num_features, 
-                             hidden_channels, heads = 4, concat = True)
-        self.conv2 = GATConv(hidden_channels * 4, 
-                             hidden_channels, heads = 1, concat = False)
+        self.conv1 = GATConv(num_features, hidden_channels, heads=4, concat=True)
+        self.conv2 = GATConv(
+            hidden_channels * 4, hidden_channels, heads=1, concat=False
+        )
         self.lin = Linear(hidden_channels, 1)
 
     def forward(self, x, edge_index, batch):
@@ -33,12 +34,13 @@ class GAT(torch.nn.Module):
         x = global_mean_pool(x, batch)  # [batch_size, hidden_channels]
 
         # Apply a final classifier
-        x = F.dropout(x, p = 0.6, training = self.training)
+        x = F.dropout(x, p=0.6, training=self.training)
         x = self.lin(x)
 
         return x.double()
 
-#-
+
+# -
 class GraphTranformer(torch.nn.Module):
     def __init__(self, hidden_channels):
         super().__init__()
@@ -52,11 +54,12 @@ class GraphTranformer(torch.nn.Module):
         x = self.conv2(x, edge_index)
         x = x.relu()
         x = global_mean_pool(x, batch)  # Pooling to get graph-level output
-        x = F.dropout(x, p = 0.6, training = self.training)
+        x = F.dropout(x, p=0.6, training=self.training)
         x = self.lin(x)
         return x
 
-#-
+
+# -
 class GCN(torch.nn.Module):
     def __init__(self, hidden_channels):
         super().__init__()
@@ -77,7 +80,7 @@ class GCN(torch.nn.Module):
         x = global_mean_pool(x, batch)  # [batch_size, hidden_channels]
 
         # Apply a final classifier
-        x = F.dropout(x, p = 0.6, training = self.training)
+        x = F.dropout(x, p=0.6, training=self.training)
         x = self.lin(x)
 
         return x.double()
