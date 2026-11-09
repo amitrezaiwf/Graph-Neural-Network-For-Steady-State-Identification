@@ -1,0 +1,35 @@
+name: GNN Steady-State CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: "requirements.txt"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch --index-url https://pytorch.org
+          pip install -r requirements.txt
+
+      - name: Lint with Ruff
+        run: ruff check model.py data_generation.py user_utility_functions.py tests/
+
+      - name: Run smoke tests
+        run: pytest -v
+

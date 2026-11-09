@@ -3,6 +3,9 @@ torch-geometric
 numpy
 scipy
 networkx
+matplotlib
+seaborn
+scikit-learn
 pytest
 ruff
 
