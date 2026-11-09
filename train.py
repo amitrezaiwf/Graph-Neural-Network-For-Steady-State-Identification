@@ -10,7 +10,6 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from model import *
 from user_utility_functions import * 
 import seaborn as sns
-
 #-
 torch.manual_seed(12275)
 epoch = 200
@@ -114,7 +113,7 @@ all_weight_gc3 = []
 
 img_path = "C:\\Users\\THINKPAD\\Dropbox\\Priodyuti\\Bar-Ilan\\Amit\\LOC-CODE\\Figure\\heatmaps\\"
 
-# Step 3: Create a KDE plot
+# Create a KDE plot
 for i in range(1, epoch + 1):
     train_loss, graph_nodes, original_train, train_label_data, predicted_labels, actual_ipr, pred_ipr = train(train_loader)
     train_losses.append(train_loss) #.detach().numpy().tolist())
@@ -137,6 +136,5 @@ plt.plot(actual_ipr,actual_ipr,color = '#5B2C6F', marker = 'o',markersize = 16, 
 plt.plot(actual_ipr,pred_ipr,color = '#DE3163', marker = "^", markersize = 8, linestyle = 'None', markerfacecolor = "none")
 plt.legend(["actual", "predicted"], loc = "lower right")
 plt.show() 
-
-
+#-
 print('Completion of training process...\n') 

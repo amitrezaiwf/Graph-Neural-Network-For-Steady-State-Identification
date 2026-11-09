@@ -1,10 +1,10 @@
 import numpy as np
 import torch
 from numpy import linalg as LA
+#-
 
 # Batch size
 b_size = 64
-
 
 def get_ipr(A):
     e_val, e_vec = LA.eigh(A)
@@ -20,7 +20,6 @@ def get_ipr(A):
     del Ev1
 
     return IPR
-
 
 def get_label_batches(batch_dataset):
     labels = []
@@ -42,7 +41,6 @@ def get_label_batches(batch_dataset):
         del A, M, data
 
     return torch.tensor(labels)
-
 
 def decides_class_batches(batch_dataset, out_train):
     labels = []
@@ -76,7 +74,6 @@ def decides_class_batches(batch_dataset, out_train):
         torch.tensor(predicted_labels),
     )
 
-
 def decides_predicted_classes(actual_test_ipr, pred_test_ipr):
     actual_test_class = np.zeros((len(actual_test_ipr),))
     pred_test_class = np.zeros((len(actual_test_ipr),))
@@ -96,7 +93,6 @@ def decides_predicted_classes(actual_test_ipr, pred_test_ipr):
             pred_test_class[i] = 0
 
     return actual_test_class, pred_test_class
-
 
 def decides_predicted_multi_classes(actual_test_ipr, pred_test_ipr):
     actual_test_class = np.zeros((len(actual_test_ipr),))

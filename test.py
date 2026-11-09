@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import torch
 from torch_geometric.loader import DataLoader
-
 import random
 from random import shuffle
 from model import *

@@ -10,7 +10,7 @@ from torch_geometric.nn import (
 
 num_features = 5
 
-
+#-
 class GAT(torch.nn.Module):
     def __init__(self, hidden_channels):
         super().__init__()
@@ -23,16 +23,16 @@ class GAT(torch.nn.Module):
 
     def forward(self, x, edge_index, batch):
 
-        # 1. Obtain node embeddings
+        # Obtain node embeddings
         x = self.conv1(x, edge_index)
         x = x.relu()
         x = self.conv2(x, edge_index)
         x = x.relu()
 
-        # 2. Readout layer
+        # Readout layer
         x = global_mean_pool(x, batch)  # [batch_size, hidden_channels]
 
-        # 3. Apply a final classifier
+        # Apply a final classifier
         x = F.dropout(x, p = 0.6, training = self.training)
         x = self.lin(x)
 
@@ -67,16 +67,16 @@ class GCN(torch.nn.Module):
 
     def forward(self, x, edge_index, batch):
 
-        # 1. Obtain node embeddings
+        # Obtain node embeddings
         x = self.conv1(x, edge_index)
         x = x.relu()
         x = self.conv2(x, edge_index)
         x = x.relu()
 
-        # 2. Readout layer
+        # Readout layer
         x = global_mean_pool(x, batch)  # [batch_size, hidden_channels]
 
-        # 3. Apply a final classifier
+        # Apply a final classifier
         x = F.dropout(x, p = 0.6, training = self.training)
         x = self.lin(x)
 
