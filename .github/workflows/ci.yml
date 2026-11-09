@@ -2,9 +2,9 @@ name: GNN Steady-State CI
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main"]
+    branches: [ "main" ]
 
 jobs:
   build-and-test:
@@ -24,14 +24,13 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install torch --index-url https://pytorch.org
-          pip install -r requirements.txt
-
           pip install -r requirements.txt
 
       - name: Lint with Ruff
         run: ruff check model.py data_generation.py user_utility_functions.py tests/
 
       - name: Run smoke tests
+        env:
+          MPLBACKEND: Agg
         run: pytest -v
 
