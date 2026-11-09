@@ -32,5 +32,6 @@ jobs:
       - name: Run smoke tests
         env:
           MPLBACKEND: Agg
-        run: pytest -v
+          PYTHONPATH: .
+        run: python -m pytest -v
 

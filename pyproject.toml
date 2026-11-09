@@ -3,6 +3,9 @@ filterwarnings = [
     "ignore::DeprecationWarning:torch_geometric.*",
 ]
 
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
 [tool.ruff]
 line-length = 88
 target-version = "py310"
