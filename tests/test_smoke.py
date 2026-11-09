@@ -58,7 +58,7 @@ def test_gnn_and_batch_classification():
 
 def test_threshold_metrics():
     actual = [0.01, 0.08, 0.25]
-    pred = [0.02, 0.10, 0.30]
+    pred = [0.02, 0.06, 0.22]
 
     bin_actual, bin_pred = decides_predicted_classes(actual, pred)
     assert np.array_equal(bin_actual, np.array([0.0, 1.0, 1.0]))
