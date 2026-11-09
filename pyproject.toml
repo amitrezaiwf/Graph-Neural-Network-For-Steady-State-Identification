@@ -1,10 +1,9 @@
 [tool.pytest.ini_options]
+pythonpath = ["."]
 filterwarnings = [
     "ignore::DeprecationWarning:torch_geometric.*",
+    "ignore:`torch.jit.script` is deprecated:FutureWarning",
 ]
-
-[tool.pytest.ini_options]
-pythonpath = ["."]
 
 [tool.ruff]
 line-length = 88
@@ -12,5 +11,4 @@ target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP"]
-
 
