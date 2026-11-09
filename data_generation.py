@@ -80,7 +80,7 @@ def barabasi(numgraphs, num_features, start, end):
     return dataset
 
 
-################################# Customized feature generation ################################
+# -Customized feature generation--
 def customized_features(G):
     # Feature 1: Degree centrality
     degree_centrality = torch.tensor(
@@ -113,4 +113,3 @@ def customized_features(G):
         dim=1,
     )
     return x
-
