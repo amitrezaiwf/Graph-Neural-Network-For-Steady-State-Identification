@@ -1,0 +1,95 @@
+Metadata-Version: 2.4
+Name: gnn-steady-state
+Version: 0.1.0
+Summary: Graph Neural Network framework for predicting steady-state behavior in complex networks.
+Author: Amit Reza
+License: MIT License
+        
+        Copyright (c) 2026 Amit Reza and Priodyuti Pradhan
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+        
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# Predicting Steady-State Behavior in Complex Networks with Graph Neural Networks
+
+[![Paper](https://shields.io)](https://aps.org)
+[![License: MIT](https://shields.io)](https://opensource.org)
+[![Python 3.10+](https://shields.io)](https://python.org)
+
+Official implementation and synthetic data generation pipeline for **"Predicting steady-state behavior in complex networks with graph neural networks"** (*Physical Review E*).
+
+## Overview
+This repository provides a Graph Neural Network (GNN) framework to predict steady-state regimes in nonlinear complex networks directly from topology and system parameters, bypassing costly numerical integration.
+
+### Key Features
+* **Synthetic Data Generation:** Simulates network dynamics to create labeled steady-state datasets.
+* **GNN Architecture:** Message-passing neural network capturing local and global steady-state properties.
+* **Full Reproducibility:** Includes Docker support and automated CI tests.
+
+---
+
+## Quickstart with Docker
+
+```bash
+# Build image
+docker build -t gnn-steady-state .
+
+# Run automated tests
+docker run --rm gnn-steady-state
+
+# Generate data and train models (mounting local directory)
+docker run --rm -v \$(pwd):/app gnn-steady-state python -m gnn_steady_state.data_generation
+docker run --rm -v \$(pwd):/app gnn-steady-state python -m gnn_steady_state.train
+```
+
+---
+
+## Local Installation
+
+```bash
+git clone https://github.com
+cd Graph-Neural-Network-For-Steady-State-Identification
+pip install -r requirements.txt
+pip install -e .
+```
+
+---
+
+## Citation
+
+```bibtex
+@article{pradhan2025predicting,
+  title={Predicting steady-state behavior in complex networks with graph neural networks},
+  author={Pradhan, Priodyuti and Reza, Amit},
+  journal={Physical Review E},
+  volume={112},
+  number={5},
+  pages={054303},
+  year={2025},
+  publisher={APS},
+  doi = {https://doi.org/10.1103/rkp2-3d1r}
+}
+
+```
+

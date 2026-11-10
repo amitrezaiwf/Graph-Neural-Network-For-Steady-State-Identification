@@ -3,7 +3,7 @@ import numpy as np
 import torch
 from torch_geometric.data import Data
 
-from user_utility_functions import get_ipr
+from gnn_steady_state.user_utility_functions import get_ipr
 
 
 # -

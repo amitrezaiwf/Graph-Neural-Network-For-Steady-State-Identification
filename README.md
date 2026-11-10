@@ -1,23 +1,62 @@
-#### This repository contains simulated data generation and graph neural network  models developed for the work presented in "Predicting steady-state behavior in complex networks with graph neural networks" [Phys. Rev. E. --> https://journals.aps.org/pre/accepted/10.1103/rkp2-3d1r].
+# Predicting Steady-State Behavior in Complex Networks with Graph Neural Networks
 
-#### Docker Setup
+[![Paper](https://shields.io)](https://aps.org)
+[![License: MIT](https://shields.io)](https://opensource.org)
+[![Python 3.10+](https://shields.io)](https://python.org)
 
-We can build and run this project in an isolated container using Docker.
+Official implementation and synthetic data generation pipeline for **"Predicting steady-state behavior in complex networks with graph neural networks"** (*Physical Review E*).
 
-##### Build the Image
+## Overview
+This repository provides a Graph Neural Network (GNN) framework to predict steady-state regimes in nonlinear complex networks directly from topology and system parameters, bypassing costly numerical integration.
+
+### Key Features
+* **Synthetic Data Generation:** Simulates network dynamics to create labeled steady-state datasets.
+* **GNN Architecture:** Message-passing neural network capturing local and global steady-state properties.
+* **Full Reproducibility:** Includes Docker support and automated CI tests.
+
+---
+
+## Quickstart with Docker
+
 ```bash
+# Build image
 docker build -t gnn-steady-state .
-```
 
-##### Run Tests
-```bash
+# Run automated tests
 docker run --rm gnn-steady-state
+
+# Generate data and train models (mounting local directory)
+docker run --rm -v \$(pwd):/app gnn-steady-state python -m gnn_steady_state.data_generation
+docker run --rm -v \$(pwd):/app gnn-steady-state python -m gnn_steady_state.train
 ```
 
-##### Generate Data & Train Models
-Mount the current directory to save generated data and model outputs locally:
+---
+
+## Local Installation
+
 ```bash
-docker run --rm -v \$(pwd):/app gnn-steady-state python data_generation.py
-docker run --rm -v \$(pwd):/app gnn-steady-state python train.py
+git clone https://github.com
+cd Graph-Neural-Network-For-Steady-State-Identification
+pip install -r requirements.txt
+pip install -e .
+```
+
+---
+
+## Citation
+
+```bibtex
+@article{pradhan2025predicting,
+  title={Predicting steady-state behavior in complex networks with graph neural networks},
+  author={Pradhan, Priodyuti and Reza, Amit},
+  journal={Physical Review E},
+  volume={112},
+  number={5},
+  pages={054303},
+  year={2025},
+  publisher={APS},
+  doi = {https://doi.org/10.1103/rkp2-3d1r}
+}
+
 ```
 

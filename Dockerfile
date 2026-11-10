@@ -16,4 +16,6 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 COPY . .
 
+RUN pip install --no-cache-dir --no-deps -e .
+
 CMD ["pytest"]

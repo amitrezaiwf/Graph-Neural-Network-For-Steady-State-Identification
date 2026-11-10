@@ -2,7 +2,7 @@ import networkx as nx
 import numpy as np
 from torch_geometric.loader import DataLoader
 
-from data_generation import (
+from gnn_steady_state.data_generation import (
     barabasi,
     customized_features,
     cycle,
@@ -11,8 +11,8 @@ from data_generation import (
     star,
     wheel,
 )
-from model import GAT, GCN, GraphTranformer
-from user_utility_functions import (
+from gnn_steady_state.model import GAT, GCN, GraphTranformer
+from gnn_steady_state.user_utility_functions import (
     decides_class_batches,
     decides_predicted_classes,
     decides_predicted_multi_classes,
